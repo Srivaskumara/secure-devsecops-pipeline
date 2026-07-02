@@ -27,7 +27,14 @@ jobs:
         run: pip install semgrep
 
       - name: Run Semgrep security rules 
-        run: semgrep --config=p/security-audit --config p/python . 
+        run: semgrep --config=p/security-audit --config=p/python --sarif --output=semgrep-results.sarif .
+        continue-on-error: true 
+
+      - name: Upload Semgrep report
+        uses: actions/upload-artifact@v4
+        with:
+          name: semgrep-results
+          path: semgrep-results.sarif  
 
       - name: Install pip-audit
         run: pip install pip-audit
@@ -43,7 +50,15 @@ jobs:
           scan-type: fs
           scan-ref: .
           severity: HIGH,CRITICAL
+          format: sarif
+          output: trivy-fs-results.sarif
         continue-on-error: true
+
+      - name: Upload Trivy filesystem report 
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-filesystem-results
+          path: trivy-fs-results.sarif
 
       - name: Build Docker image
         run: docker build -t secure-devsecops-app .
@@ -53,4 +68,12 @@ jobs:
         with:
           image-ref: secure-devsecops-app
           severity: HIGH,CRITICAL
+          format: sarif
+          output: trivy-container-results.sarif
         continue-on-error: true
+
+      - name: Upload Trivy container report
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-container-results
+          path: trivy-container-results.sarif   
