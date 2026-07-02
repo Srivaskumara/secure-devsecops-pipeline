@@ -1,6 +1,7 @@
 from flask import Flask 
 
-API_KEY="dhjjjjjjjdjdjdjdjdjdjdjdjdjd"
+AWS_ACCESS_KEY="AKIAIOSFODNN7EXAMPLE"
+AWS_SECRET_ACCESS_KEY="wJaIrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
 
 app = Flask(__name__)
 
