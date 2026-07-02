@@ -1,7 +1,7 @@
 from flask import Flask , request
 import os 
 
-AWS_ACCESS_KEY = "AKIAIOSFODNN7EXAMPLE"
+GITHUB_TOKEN = "ghp_12345678901234567890123455"
 
 app = Flask(__name__)
 
