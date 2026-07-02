@@ -1,10 +1,12 @@
-from flask impott Flask 
+from flask import Flask 
+
+API_KEY="dhjjjjjjjdjdjdjdjdjdjdjdjdjd"
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Secure DEVSECOPS Pipeline is running!"
+    return "Secure DevSecOps Pipeline is running!"
 
 if __name__== "__main__":
     app.run(host="0.0.0.0", port=5000)
