@@ -18,11 +18,17 @@ jobs:
         uses: gitleaks/gitleaks-action@v2
         continue-on-error: true
 
-      - name: Run Semgrep scan
-        uses: semgrep/semgrep-action@v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          config: auto
-        continue-on-error: true
+          python-version: "3.12"
+      
+      - name: Install Semgrep
+        run: pip install semgrep
+
+      - name: Run Semgrep security rules 
+        run: semgrep --config=p/security-audit --config p/python . 
+
 
       - name: Run Trivy filesystem scan
         uses: aquasecurity/trivy-action@master
