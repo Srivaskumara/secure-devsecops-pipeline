@@ -1,5 +1,7 @@
-from flask import Flask 
+from flask import Flask , request
 import os 
+
+AWS_ACCESS_KEY = "AKIAIOSFODNN7EXAMPLE"
 
 app = Flask(__name__)
 
